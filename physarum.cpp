@@ -133,24 +133,6 @@ void idle()
     }
 }
 
-void mouse(int button, int state, int mx, int my)
-{
-    float x = .5 - (float) mx / mdlCfg->width;
-    float y = .5 - (float) my / mdlCfg->height;
-
-    printf("%d %d %f %f\n", mx, my, x, y);
-
-    if (button == 3) {
-        zoomFactor += .1;
-    }
-    else if (button == 4) {
-        zoomFactor -= .1;
-    }
-    
-    glPixelZoom(zoomFactor, zoomFactor);
-
-}
-
 void keyboard(unsigned char key, int x, int y)
 {
     switch (key)
@@ -231,7 +213,6 @@ void initGL(int* argc, char** argv)
     glutCreateWindow("Physarum");
     glutDisplayFunc(display);
     glutKeyboardFunc(keyboard);
-    glutMouseFunc(mouse);
     glutReshapeFunc(reshape);
     glutIdleFunc(idle);
 
@@ -242,9 +223,6 @@ void initGL(int* argc, char** argv)
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// Program main
-////////////////////////////////////////////////////////////////////////////////
 int
 main(int argc, char** argv)
 {
